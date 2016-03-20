@@ -8,4 +8,5 @@ import com.sauloguiar.nubankchallenge.ui.UiEvents;
 public interface ChargebackStateMachine extends UiEvents.Handling {
     ChargebackState getState();
     void updateView();
+    void actionInit();
 }

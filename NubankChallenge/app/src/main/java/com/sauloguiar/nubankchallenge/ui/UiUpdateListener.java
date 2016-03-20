@@ -5,8 +5,8 @@ package com.sauloguiar.nubankchallenge.ui;
  */
 public interface UiUpdateListener {
 
-    void updateNoticeScreen(String elements);
-    void updateChargebackScreen(String elements);
-    void updateDialog(String elements);
+    void updateNoticeScreen();
+    void updateChargebackScreen();
+    void updateDialog();
 
 }

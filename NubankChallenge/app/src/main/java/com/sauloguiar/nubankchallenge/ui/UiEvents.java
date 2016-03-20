@@ -7,14 +7,14 @@ public interface UiEvents {
 
     interface NoticeScreen {
         void onContinue();
-        void onCancel();
+        void onNoticeCancelled();
     }
 
     interface ChargebackScreen {
         void onVenueRecognized(boolean value);
         void onCardInPossession(boolean value);
         void onChargebackSubmit(boolean venueRecognized, boolean cardInPossesion);
-        void onCancel();
+        void onChargebackCancelled();
     }
 
     interface DialogScreen {
