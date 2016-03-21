@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
+    android:id="@+id/chargeback_screen_container"
     >
 
     <TextView
@@ -32,7 +33,8 @@
         android:src="@drawable/ic_chargeback_lock"
         android:layout_below="@id/chargeback_screen_title"
         android:layout_marginTop="12dp"
-        android:layout_marginStart="15dp"/>
+        android:layout_marginStart="15dp"
+        android:onClick="onImageClicked"/>
 
     <TextView
         android:id="@+id/chargeback_screen_card_status"
@@ -56,6 +58,7 @@
         android:layout_below="@+id/chargeback_screen_lock_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
+        android:textColor="@drawable/switch_state"
         android:layout_marginRight="15dp"
         android:layout_marginStart="15dp"
         android:textStyle="bold"/>
@@ -66,6 +69,7 @@
         android:text="Está com o cartao em maos?"
         android:id="@+id/chargeback_screen_card_in_possession_switch"
         android:textStyle="bold"
+        android:textColor="@drawable/switch_state"
         android:layout_below="@+id/chargeback_screen_merchant_switch"
         android:layout_alignStart="@+id/chargeback_screen_merchant_switch"
         android:layout_alignEnd="@+id/chargeback_screen_merchant_switch"
@@ -89,6 +93,18 @@
         android:padding="10dp"
         android:textSize="15dp"
         />
+
+    <EditText
+        android:id="@+id/chargeback_screen_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chargeback_screen_comment"
+        android:padding="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/chargeback_screen_cancel_button" />
+
     <View
         android:id="@+id/centerShim"
         android:layout_width="0dp"
@@ -105,19 +121,35 @@
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@id/centerShim"
         tools:text="Cancelar"
+        android:text="@string/cancel_button_label"
         android:background="@android:color/transparent"
-
+        android:textColor="@color/close_gray"
+        android:onClick="onCancelPressed"
         />
 
     <Button
         android:id="@+id/chargeback_screen_contest_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/disabled_gray"
         tools:text="Contestar"
+        android:text="@string/contest_button_label"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/centerShim"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:onClick="onContestPressed"
+        />
+
+    <ProgressBar
+        android:id="@+id/chargeback_screen_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        />
 
 
 </RelativeLayout>

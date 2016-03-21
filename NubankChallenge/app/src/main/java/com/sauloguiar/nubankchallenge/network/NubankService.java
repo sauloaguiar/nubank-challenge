@@ -1,9 +1,10 @@
 package com.sauloguiar.nubankchallenge.network;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.sauloguiar.nubankchallenge.data.Chargeback;
 import com.sauloguiar.nubankchallenge.data.Notice;
+
+import org.json.JSONObject;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -12,7 +13,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 
 /**
  * Created by sauloaguiar on 3/10/16.
@@ -20,17 +20,20 @@ import retrofit2.http.Path;
 public class NubankService {
 
     public interface NubankEndpoint {
-        @GET("/{endpoint}")
-        public Call<JsonElement> getAction(@Path("endpoint") String endpoint);
-
-        @POST("/{endpoint}")
-        public Call<JsonElement> postAction(@Path("endpoint") String endpoint);
-
         @GET("/notice")
         public Call<Notice> getNotice();
 
         @GET("/chargeback")
         public Call<Chargeback> getChargeback();
+
+        @POST("/block_card")
+        public Call<JSONObject> postBlockCard();
+
+        @POST("/unblock_card")
+        public Call<JSONObject> postUnblockCard();
+
+        @POST("/chargeback")
+        public Call<JSONObject> postChargeback();
     }
 
     private final String base_url = "https://nu-mobile-hiring.herokuapp.com/";

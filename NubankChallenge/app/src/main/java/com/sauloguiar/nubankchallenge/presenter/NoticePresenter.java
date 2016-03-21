@@ -2,8 +2,6 @@ package com.sauloguiar.nubankchallenge.presenter;
 
 import com.sauloguiar.nubankchallenge.data.Notice;
 import com.sauloguiar.nubankchallenge.network.NubankService;
-import com.sauloguiar.nubankchallenge.network.RestCommunicator;
-import com.sauloguiar.nubankchallenge.network.RetrofitRestCommunicator;
 import com.sauloguiar.nubankchallenge.ui.UiEvents;
 import com.sauloguiar.nubankchallenge.ui.Views;
 
@@ -18,11 +16,9 @@ import retrofit2.Response;
 public class NoticePresenter implements UiEvents.NoticeScreenPresenter {
 
     private Views.NoticeScreen noticeScreenView;
-    private RestCommunicator communicator;
 
     public NoticePresenter(Views.NoticeScreen noticeScreenView) {
         this.noticeScreenView = noticeScreenView;
-        communicator = new RetrofitRestCommunicator();
     }
 
     @Override

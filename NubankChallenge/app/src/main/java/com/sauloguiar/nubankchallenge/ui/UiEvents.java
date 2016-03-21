@@ -19,6 +19,10 @@ public interface UiEvents {
         void onCardInPossession(boolean value);
         void onChargebackSubmit(boolean venueRecognized, boolean cardInPossesion);
         void onChargebackCancelled();
+
+        void blockCard();
+        void unblockCard();
+
     }
 
     interface DialogScreenPresenter {

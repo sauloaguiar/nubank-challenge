@@ -2,6 +2,12 @@
     <string name="app_name">NubankChallenge</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Chargeback Screen Labels -->
     <string name="preventive_block">Bloqueamos preventivamente o seu cartão.</string>
     <string name="warning_block">Cartão desbloqueado, recomendamos mantê-lo bloqueado.</string>
+
+    <string name="cancel_button_label">CANCELAR</string>
+    <string name="contest_button_label">CONTESTAR</string>
+
+    <string name="internet_error">"Sem conexão com internet..."</string>
 </resources>

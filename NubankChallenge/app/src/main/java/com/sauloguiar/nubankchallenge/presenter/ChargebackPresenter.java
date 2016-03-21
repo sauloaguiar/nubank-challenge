@@ -7,6 +7,9 @@ import com.sauloguiar.nubankchallenge.network.NubankService;
 import com.sauloguiar.nubankchallenge.ui.UiEvents;
 import com.sauloguiar.nubankchallenge.ui.Views;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,6 +46,38 @@ public class ChargebackPresenter implements UiEvents.ChargebackScreenPresenter{
     }
 
     @Override
+    public void blockCard() {
+        chargebackScreenView.showProgress();
+        NubankService.NubankEndpoint endpoint = (new NubankService()).getApiEndpoint();
+        endpoint.postBlockCard().enqueue(new Callback<JSONObject>() {
+            @Override
+            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                chargebackScreenView.hideProgress();
+
+                try {
+                    if (response.body().getString("status").equals("ok")) {
+                        chargebackScreenView.autoblockCard(true);
+                    } else {
+                        chargebackScreenView.autoblockCard(false);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JSONObject> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void unblockCard() {
+
+    }
+
+    @Override
     public void onStart() {
         chargebackScreenView.showProgress();
         NubankService.NubankEndpoint endpoint = (new NubankService()).getApiEndpoint();
@@ -56,6 +91,7 @@ public class ChargebackPresenter implements UiEvents.ChargebackScreenPresenter{
                 chargebackScreenView.setMerchantRecognized(response.body().merchantRecognized(), response.body().getMerchantRecognizedString());
                 chargebackScreenView.setComment(response.body().getComment());
                 chargebackScreenView.autoblockCard(response.body().getAutoblocked());
+
 
             }
 
