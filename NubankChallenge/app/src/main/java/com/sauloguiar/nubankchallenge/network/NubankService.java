@@ -2,6 +2,8 @@ package com.sauloguiar.nubankchallenge.network;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.sauloguiar.nubankchallenge.data.Chargeback;
+import com.sauloguiar.nubankchallenge.data.Notice;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -23,6 +25,12 @@ public class NubankService {
 
         @POST("/{endpoint}")
         public Call<JsonElement> postAction(@Path("endpoint") String endpoint);
+
+        @GET("/notice")
+        public Call<Notice> getNotice();
+
+        @GET("/chargeback")
+        public Call<Chargeback> getChargeback();
     }
 
     private final String base_url = "https://nu-mobile-hiring.herokuapp.com/";

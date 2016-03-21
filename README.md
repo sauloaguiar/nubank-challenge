@@ -1,20 +1,18 @@
 # nubank-challenge
 
-  The basic idea of my solution is to maintain a state machine to keep of track of how the application state changes during its lifecycle.
-  In order to have this abstraction, the Facade pattern is also being use to avoid exposing to much information to the Activity - which will interact with the Facade instead of knowing the intricacies of the State machine.
-  The Facade will also be responsible to intermediate the communication with the network module.
+  The basic idea of my solution rely in the [MVP pattern](http://antonioleiva.com/mvp-android/) to separate concerns and responsibilities in the application.
+  Every view - i.e. activity - has one corresponding presenter that handles the logic intricacies. For example, calling the network to get data to populate the screen.
 
 ### Helpful Resources
  + [Unit Testing Support](http://tools.android.com/tech-docs/unit-testing-support)
  + [Testing Android](http://developer.android.com/tools/testing/testing_android.html)
  + [Unit Testing with MVP](https://www.youtube.com/watch?v=Asc4hU1iSTU)
- + [State Pattern](https://en.wikipedia.org/wiki/State_pattern)
- + [Facade Pattern](https://en.wikipedia.org/wiki/Facade_pattern)
 
 ### Libraries
  + [Retrofit](http://square.github.io/retrofit/)
  + [JUnit](http://junit.org/)
  + [Mockito](http://mockito.org/)
+ + [Gson](https://github.com/google/gson)
 
 #### Domain Specific Hypermedia Formats
   A good hypermedia format conveys both domain-specific(values of information elements belonging to a business resource) and protocol information (how to make progress in a business process).

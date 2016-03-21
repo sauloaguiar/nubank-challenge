@@ -1,9 +1,95 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment"
-    android:name="com.sauloguiar.nubankchallenge.NoticeScreenActivityFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:layout="@layout/fragment_notice_screen" />
+    tools:context=".ui.fragments.NoticeScreenActivityFragment"
+    android:baselineAligned="false"
+    android:background="@color/background"
+    >
+
+    <TextView
+        android:id="@+id/notice_screen_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Antes de continuar"
+        android:text="Antes de continuar"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="@color/titles"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
+
+    <TextView
+        android:id="@+id/notice_screen_description"
+        android:layout_below="@id/notice_screen_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/texts"
+        tools:text='Estamos com você nesta! Certifique-se dos pontos abaixo, são muito importantes'
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/notice_screen_button_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="FECHAR"
+        android:textColor="@color/disabled_gray"
+        android:textSize="20sp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentBottom="true"
+        android:onClick="onCancelPressed"
+        />
+
+    <Button
+        android:id="@+id/notice_screen_button_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="CONTINUAR"
+        android:textColor="@color/titles"
+        android:textSize="25sp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@android:color/transparent"
+        android:layout_above="@id/notice_screen_button_close"
+        android:onClick="onContinuePressed"
+        />
+
+    <View
+        android:layout_below="@id/notice_screen_button_continue"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/close_gray" />
+
+    <View
+        android:layout_above="@id/notice_screen_button_continue"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/close_gray" />
+
+    <ProgressBar
+        android:id="@+id/content_screen_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        />
+
+
+</RelativeLayout>
+

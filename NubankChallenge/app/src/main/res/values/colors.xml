@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="titles">#6e2b77</color>
+    <color name="texts">#222222</color>
+    <color name="hint">#999999</color>
+    <color name="background">#fdfdfd</color>
+    <color name="green">#417505</color>
+    <color name="red">#d5171b</color>
+    <color name="close_gray">#808191</color>
+    <color name="disabled_gray">#cccccc</color>
+    <color name="enabled_purple">@color/titles</color>
+
 </resources>

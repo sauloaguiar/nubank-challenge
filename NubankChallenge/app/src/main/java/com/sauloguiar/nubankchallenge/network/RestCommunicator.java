@@ -9,6 +9,6 @@ public interface RestCommunicator {
 
     // TODO Define test cases and mock webservice call
 
-    void get(String path, HashMap<String, String> args);
-    void post(String path, HashMap<String, String> args);
+    void get(String path, HashMap<String, String> args, final RestCommunicationListener listener);
+    void post(String path, HashMap<String, String> args, final RestCommunicationListener listener);
 }

@@ -14,19 +14,16 @@ import retrofit2.Response;
 public class RetrofitRestCommunicator implements RestCommunicator {
 
     private NubankService.NubankEndpoint endpoint;
-    private RestCommunicationListener listener;
 
-    public RetrofitRestCommunicator(RestCommunicationListener listener) {
+    public RetrofitRestCommunicator() {
         // TODO Define interface that will receive data after the service is called
-
         endpoint = (new NubankService()).getApiEndpoint();
-        this.listener = listener;
     }
 
     // TODO Define how to pass arguments to the call
 
     @Override
-    public void get(String path, HashMap<String, String> args) {
+    public void get(String path, HashMap<String, String> args, final RestCommunicationListener listener) {
         // TODO
         endpoint.getAction(path).enqueue(new Callback<JsonElement>() {
             @Override
@@ -43,7 +40,7 @@ public class RetrofitRestCommunicator implements RestCommunicator {
     }
 
     @Override
-    public void post(String path, HashMap<String, String> args) {
+    public void post(String path, HashMap<String, String> args, final RestCommunicationListener listener) {
         // TODO
         endpoint.postAction(path).enqueue(new Callback<JsonElement>() {
             @Override

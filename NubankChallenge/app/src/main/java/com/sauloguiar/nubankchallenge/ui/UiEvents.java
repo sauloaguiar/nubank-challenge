@@ -5,23 +5,27 @@ package com.sauloguiar.nubankchallenge.ui;
  */
 public interface UiEvents {
 
-    interface NoticeScreen {
+    interface Base {
+        void onStart();
+        void onStop();
+    }
+    interface NoticeScreenPresenter extends Base {
         void onContinue();
         void onNoticeCancelled();
     }
 
-    interface ChargebackScreen {
+    interface ChargebackScreenPresenter extends Base {
         void onVenueRecognized(boolean value);
         void onCardInPossession(boolean value);
         void onChargebackSubmit(boolean venueRecognized, boolean cardInPossesion);
         void onChargebackCancelled();
     }
 
-    interface DialogScreen {
+    interface DialogScreenPresenter {
         void onDialogDismissed();
     }
 
-    interface Handling extends NoticeScreen, ChargebackScreen, DialogScreen {
+    interface AllPresenters extends NoticeScreenPresenter, ChargebackScreenPresenter, DialogScreenPresenter {
 
     }
 }

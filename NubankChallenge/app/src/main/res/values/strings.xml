@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">NubankChallenge</string>
     <string name="action_settings">Settings</string>
+
+    <string name="preventive_block">Bloqueamos preventivamente o seu cartão.</string>
+    <string name="warning_block">Cartão desbloqueado, recomendamos mantê-lo bloqueado.</string>
 </resources>
