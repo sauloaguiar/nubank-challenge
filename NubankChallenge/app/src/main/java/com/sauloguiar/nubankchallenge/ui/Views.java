@@ -12,6 +12,7 @@ public interface Views {
 
         public void setTitle(String title);
 
+        public void showFeedback(String string);
     }
 
     interface NoticeScreen extends Base {

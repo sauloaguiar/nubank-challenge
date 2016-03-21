@@ -17,7 +17,7 @@ public interface UiEvents {
     interface ChargebackScreenPresenter extends Base {
         void onVenueRecognized(boolean value);
         void onCardInPossession(boolean value);
-        void onChargebackSubmit(boolean venueRecognized, boolean cardInPossesion);
+        void onChargebackSubmit(boolean venueRecognized, boolean cardInPossesion, String comment);
         void onChargebackCancelled();
 
         void blockCard();

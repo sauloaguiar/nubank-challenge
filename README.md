@@ -14,6 +14,12 @@
  + [Mockito](http://mockito.org/)
  + [Gson](https://github.com/google/gson)
 
+ ### Assumptions
+ + There's an EditText in the Chargeback Screen to take the user input regarding the reason for the chargeback request
+ + Only when the EditText has some text on it, the Contest button becomes clickable.
+ + The padlock image is the interface to block/unblock the card
+ + As there's no data in the JSON's regarding the information about the card status, I created two strings under strings.xml to store it
+
 #### Domain Specific Hypermedia Formats
   A good hypermedia format conveys both domain-specific(values of information elements belonging to a business resource) and protocol information (how to make progress in a business process).
   Augmenting the hypermedia format

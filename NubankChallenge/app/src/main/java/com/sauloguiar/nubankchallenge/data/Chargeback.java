@@ -19,8 +19,6 @@ public class Chargeback {
     private List<Detail> reason_details;
 
     private HashMap<String, JSONObject> links;
-    private boolean cardInPossession;
-    private String merchantRecognizedString;
 
     class Detail {
         String id;

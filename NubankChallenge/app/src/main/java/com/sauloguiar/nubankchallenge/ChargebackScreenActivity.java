@@ -7,12 +7,14 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sauloguiar.nubankchallenge.presenter.ChargebackPresenter;
 import com.sauloguiar.nubankchallenge.ui.UiEvents;
@@ -60,8 +62,20 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
         cardStatusText = (TextView) findViewById(R.id.chargeback_screen_card_status);
 
         merchantSwitch = (Switch) findViewById(R.id.chargeback_screen_merchant_switch);
+        merchantSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                presenter.onVenueRecognized(isChecked);
+            }
+        });
 
         cardInHandsSwitch = (Switch) findViewById(R.id.chargeback_screen_card_in_possession_switch);
+        cardInHandsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                presenter.onCardInPossession(isChecked);
+            }
+        });
 
         comment = (TextView) findViewById(R.id.chargeback_screen_comment);
 
@@ -99,10 +113,12 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
     }
 
     public void onContestPressed(View v) {
-        presenter.onChargebackSubmit(merchantSwitch.isChecked(), cardInHandsSwitch.isChecked());
+        presenter.onChargebackSubmit(merchantSwitch.isChecked(), cardInHandsSwitch.isChecked(), editText.getText().toString());
     }
 
     public void onImageClicked(View v) {
+        Toast.makeText(getApplicationContext(), "clicked, blocked? " + isCardBlocked, Toast.LENGTH_SHORT).show();
+
         if (isCardBlocked) {
             presenter.unblockCard();
         } else {
@@ -159,5 +175,10 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
     @Override
     public void setTitle(String title) {
         this.title.setText(title);
+    }
+
+    @Override
+    public void showFeedback(String string) {
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
 }

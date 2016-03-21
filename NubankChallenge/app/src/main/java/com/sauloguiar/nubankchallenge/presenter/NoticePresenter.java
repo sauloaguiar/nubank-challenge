@@ -1,7 +1,7 @@
 package com.sauloguiar.nubankchallenge.presenter;
 
 import com.sauloguiar.nubankchallenge.data.Notice;
-import com.sauloguiar.nubankchallenge.network.NubankService;
+import com.sauloguiar.nubankchallenge.network.CommunicatorService;
 import com.sauloguiar.nubankchallenge.ui.UiEvents;
 import com.sauloguiar.nubankchallenge.ui.Views;
 
@@ -15,10 +15,12 @@ import retrofit2.Response;
  */
 public class NoticePresenter implements UiEvents.NoticeScreenPresenter {
 
+    private CommunicatorService communicatorService;
     private Views.NoticeScreen noticeScreenView;
 
-    public NoticePresenter(Views.NoticeScreen noticeScreenView) {
+    public NoticePresenter(Views.NoticeScreen noticeScreenView, CommunicatorService communicator) {
         this.noticeScreenView = noticeScreenView;
+        this.communicatorService = communicator;
     }
 
     @Override
@@ -28,14 +30,13 @@ public class NoticePresenter implements UiEvents.NoticeScreenPresenter {
 
     @Override
     public void onNoticeCancelled() {
-
+        onStop();
     }
 
     @Override
     public void onStart() {
         noticeScreenView.showProgress();
-        NubankService.NubankEndpoint endpoint = (new NubankService()).getApiEndpoint();
-        endpoint.getNotice().enqueue(new Callback<Notice>() {
+        communicatorService.getNotice(new Callback<Notice>() {
             @Override
             public void onResponse(Call<Notice> call, Response<Notice> response) {
                 noticeScreenView.hideProgress();
@@ -49,7 +50,7 @@ public class NoticePresenter implements UiEvents.NoticeScreenPresenter {
             @Override
             public void onFailure(Call<Notice> call, Throwable t) {
                 noticeScreenView.hideProgress();
-                
+
                 noticeScreenView.onFailure(t);
             }
         });
@@ -57,6 +58,7 @@ public class NoticePresenter implements UiEvents.NoticeScreenPresenter {
 
     @Override
     public void onStop() {
-
+        this.noticeScreenView = null;
+        this.communicatorService = null;
     }
 }

@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sauloguiar.nubankchallenge.network.NubankService;
 import com.sauloguiar.nubankchallenge.presenter.NoticePresenter;
 import com.sauloguiar.nubankchallenge.ui.UiEvents;
 import com.sauloguiar.nubankchallenge.ui.Views;
@@ -34,7 +35,7 @@ public class NoticeScreenActivity extends AppCompatActivity implements Views.Not
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        presenter = new NoticePresenter(this);
+        presenter = new NoticePresenter(this, new NubankService());
 
         loadViewObjects();
     }
@@ -107,9 +108,13 @@ public class NoticeScreenActivity extends AppCompatActivity implements Views.Not
         progressBar.setVisibility(View.GONE);
         Toast.makeText(this, "We had a problem...", Toast.LENGTH_SHORT).show();
         if (t instanceof UnknownHostException) {
-            Toast.makeText(this, getString(R.string.internet_error) , Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.internet_error), Toast.LENGTH_LONG).show();
             finish();
         }
+    }
 
+    @Override
+    public void showFeedback(String string) {
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
 }
