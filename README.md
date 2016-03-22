@@ -22,6 +22,8 @@
  + All the Strings in the Dialog were also stored in the strings.xml file
  + The /chargeback endpoint accepts empty strings for the chargeback request. It is avoid because the send button is not available if the user doesn't type anything in the edit text.
  + I used a HashMap<String, Object> to represent an element in the reason_details array list in the Chargeback request.
+ + The NubankService implementation should be a singleton or something around those lines - I have new objects in every Presenter. Having a singleton would help to implement improvements like caching.
+
  + I missed testing :/
 
 #### Domain Specific Hypermedia Formats
