@@ -9,6 +9,8 @@ import com.sauloguiar.nubankchallenge.network.CommunicatorService;
 import com.sauloguiar.nubankchallenge.ui.UiEvents;
 import com.sauloguiar.nubankchallenge.ui.Views;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,12 +22,12 @@ public class ChargebackPresenter implements UiEvents.ChargebackScreenPresenter{
 
     private Views.ChargebackScreen chargebackScreenView;
     private CommunicatorService communicatorService;
-    private ChargebackRequest chargeback;
+    private ChargebackRequest chargebackRequest;
 
     public ChargebackPresenter(Views.ChargebackScreen chargebackScreenView, CommunicatorService communicator) {
         this.chargebackScreenView = chargebackScreenView;
         this.communicatorService = communicator;
-        chargeback = new ChargebackRequest();
+        chargebackRequest = new ChargebackRequest();
     }
 
     @Override
@@ -40,9 +42,34 @@ public class ChargebackPresenter implements UiEvents.ChargebackScreenPresenter{
 
     @Override
     public void onChargebackSubmit(boolean venueRecognized, boolean cardInPossesion, String comment) {
-        chargeback.setVenueRecognized(venueRecognized);
-        chargeback.setCardInPossesion(cardInPossesion);
-        chargeback.setComment(comment);
+        chargebackRequest.setVenueRecognized(venueRecognized);
+        chargebackRequest.setCardInPossesion(cardInPossesion);
+        chargebackRequest.setComment(comment);
+
+        chargebackScreenView.showProgress();
+        communicatorService.postChargeback(chargebackRequest, new Callback<Status>() {
+            @Override
+            public void onResponse(Call<Status> call, Response<Status> response) {
+                // check if call was successfull
+                chargebackScreenView.hideProgress();
+                if (response.isSuccess()) {
+                    chargebackScreenView.chargebackSuccess();
+                } else {
+                    try {
+                        chargebackScreenView.showFeedback(response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        chargebackScreenView.onFailure(e.getCause());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Status> call, Throwable t) {
+                chargebackScreenView.hideProgress();
+                chargebackScreenView.showFeedback(t.toString());
+            }
+        });
     }
 
     @Override

@@ -28,6 +28,7 @@ public interface Views {
 
         public void setComment(String comment);
 
+        public void chargebackSuccess();
     }
 
 

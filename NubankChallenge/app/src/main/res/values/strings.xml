@@ -10,4 +10,10 @@
     <string name="contest_button_label">CONTESTAR</string>
 
     <string name="internet_error">"Sem conexão com internet..."</string>
+
+
+    <!-- Dialog Screen Texts -->
+    <string name="dialog_screen_title">Contestação de compra recebida</string>
+    <string name="dialog_screen_description">Fique de olho no seu email! Nos próximos 3 dias você deverá receber um primeiro retorno sobre sua contestação.</string>
+    <string name="dialog_screen_close_button">FECHAR</string>
 </resources>

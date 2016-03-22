@@ -1,5 +1,6 @@
 package com.sauloguiar.nubankchallenge;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sauloguiar.nubankchallenge.network.NubankService;
 import com.sauloguiar.nubankchallenge.presenter.ChargebackPresenter;
 import com.sauloguiar.nubankchallenge.ui.UiEvents;
 import com.sauloguiar.nubankchallenge.ui.Views;
@@ -45,7 +47,7 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
 
         loadViewObjects();
 
-        presenter = new ChargebackPresenter(this);
+        presenter = new ChargebackPresenter(this, new NubankService());
 
     }
 
@@ -156,6 +158,13 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
     }
 
     @Override
+    public void chargebackSuccess() {
+        // start dialog activity
+        Intent intent = new Intent(getApplicationContext(), DialogActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void showProgress() {
         container.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
@@ -169,7 +178,7 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
 
     @Override
     public void onFailure(Throwable t) {
-
+        Toast.makeText(getApplicationContext(), "Error em " + t.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override

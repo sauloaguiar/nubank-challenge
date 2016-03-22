@@ -1,6 +1,7 @@
 package com.sauloguiar.nubankchallenge.network;
 
 import com.sauloguiar.nubankchallenge.data.Chargeback;
+import com.sauloguiar.nubankchallenge.data.ChargebackRequest;
 import com.sauloguiar.nubankchallenge.data.Notice;
 import com.sauloguiar.nubankchallenge.data.Status;
 
@@ -18,4 +19,6 @@ public interface CommunicatorService {
     public void postUnblockCard(Callback<Status> callback);
 
     public void getChargeback(Callback<Chargeback> callback);
+
+    public void postChargeback(ChargebackRequest request, Callback<Status> callback);
 }

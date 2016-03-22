@@ -58,7 +58,6 @@ public class NoticePresenter implements UiEvents.NoticeScreenPresenter {
 
     @Override
     public void onStop() {
-        this.noticeScreenView = null;
-        this.communicatorService = null;
+
     }
 }
