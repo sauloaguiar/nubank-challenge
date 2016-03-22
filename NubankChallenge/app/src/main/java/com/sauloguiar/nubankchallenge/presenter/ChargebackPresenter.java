@@ -111,9 +111,9 @@ public class ChargebackPresenter implements UiEvents.ChargebackScreenPresenter{
                 chargebackScreenView.hideProgress();
                 if (response.isSuccess()) {
                     if (response.body().isOk()) {
-                        chargebackScreenView.autoblockCard(true);
-                    } else {
                         chargebackScreenView.autoblockCard(false);
+                    } else {
+                        chargebackScreenView.autoblockCard(true);
                     }
                 } else {
                     chargebackScreenView.showFeedback("Error within calling the server");

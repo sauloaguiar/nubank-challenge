@@ -119,8 +119,6 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
     }
 
     public void onImageClicked(View v) {
-        Toast.makeText(getApplicationContext(), "clicked, blocked? " + isCardBlocked, Toast.LENGTH_SHORT).show();
-
         if (isCardBlocked) {
             presenter.unblockCard();
         } else {
@@ -159,7 +157,6 @@ public class ChargebackScreenActivity extends AppCompatActivity implements Views
 
     @Override
     public void chargebackSuccess() {
-        // start dialog activity
         Intent intent = new Intent(getApplicationContext(), DialogActivity.class);
         startActivity(intent);
     }

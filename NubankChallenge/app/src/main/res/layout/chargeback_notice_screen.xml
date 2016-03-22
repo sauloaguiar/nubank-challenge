@@ -35,7 +35,9 @@
         android:layout_marginTop="12dp"
         android:layout_marginStart="15dp"
         android:onClick="onImageClicked"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"/>
 
     <TextView
         android:id="@+id/chargeback_screen_card_status"

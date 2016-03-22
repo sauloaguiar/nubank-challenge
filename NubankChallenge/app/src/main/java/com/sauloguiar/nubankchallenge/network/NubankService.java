@@ -105,7 +105,7 @@ public class NubankService implements CommunicatorService {
         @GET("/chargeback")
         public Call<Chargeback> getChargeback();
 
-        @POST("/block_card")
+        @POST("/card_block")
         public Call<Status> postBlockCard();
 
         @POST("/card_unblock")
